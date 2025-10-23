@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Reflex",
+    "displayName": "AMI Activator"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0c535e8e-d38e-9624-4ec1-ba859e16bbb8"
+  }
+}

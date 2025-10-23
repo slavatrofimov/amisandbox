@@ -1,0 +1,136 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "4c13f88a-697a-4bc0-9686-f243495bcb4c",
+        "clusterUri": "https://trd-wd4wk1apq1ku3uh8p5.z1.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "7bfa6060-2ce7-43c1-ab60-991bec8c92df",
+        "databaseItemName": "PowerUtilitiesEH"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "23c27c9a-fa0c-4a87-a14f-4b03a5db5ad9",
+        "content": ".create-or-alter function with (folder = \"Telemetry\", docstring = \"Parse raw AMI telemetry data corresponding to last gasp messages unrelated to outages\", skipvalidation = \"true\") AMITelemetryParseLastGasp() {\n     AMITelemetryRaw\n    | where messageType == \"last_gasp\"\n    | project\n        meter_id = deviceId,\n        timestamp = todatetime(timestamp),\n        EventEnqueuedUtcTime,\n        EventProcessedUtcTime,\n        source, \n        signal_strength_dbm = todouble(telemetry.signal_strength_dbm),\n        battery_voltage = todouble(telemetry.battery_voltage),\n        internal_temperature_c = todouble(telemetry.internal_temperature_c),\n        firmware_version = tostring(telemetry.firmware_version),\n        alert_code = tostring(telemetry.alert_code),\n        alert_description = tostring(telemetry.alert_description),\n        failure_type = tostring(telemetry.failure_type),\n        final_energy_reading_kwh = todouble(telemetry.final_energy_reading_kwh),\n        error_codes = telemetry.error_codes,\n        retry_attempts = toint(telemetry.retry_attempts),\n        last_successful_transmission = todatetime(telemetry.last_successful_transmission),\n        priority = tostring(telemetry.priority),\n        requires_investigation = tobool(telemetry.requires_investigation)\n }\n\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "be4e8898-528c-4fe2-9609-066664e1b6b1",
+        "content": "external_table('Meters')\n| join  kind = leftouter AMITelemetryLatestReading on meter_id\n| extend latency = datetime_diff('minute', timestamp, now())",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "e05de4b1-85fe-412a-819c-71b52c89385b",
+        "content": "\n\n.create-or-alter function with (folder = \"Telemetry\", docstring = \"Parse raw AMI telemetry data corresponding to periodic meter readings\", skipvalidation = \"true\") AMITelemetryParseIntervalReadings() {\n    let outage_meters = AMITelemetryOutageLastGasp\n        | where timestamp >= ago(8min)\n        | summarize by meter_id;\n    AMITelemetryRaw\n    | where messageType == \"interval_reading\"\n    | where deviceId !in(outage_meters) //Exclude telemetry for meters affected by recent last gasp outage messages\n    | project\n        meter_id = deviceId,\n        timestamp = todatetime(timestamp),\n        EventEnqueuedUtcTime,\n        EventProcessedUtcTime,\n        source, \n        interval_minutes = todouble(telemetry.interval_minutes), \n        active_power_kw = todouble(telemetry.active_power_kw),\n        reactive_power_kvar = todouble(telemetry.reactive_power_kvar),\n        apparent_power_kva = todouble(telemetry.apparent_power_kva),\n        current_amps = todouble(telemetry.current_amps),\n        voltage_volts = todouble(telemetry.voltage_volts),\n        power_factor = todouble(telemetry.power_factor),\n        frequency_hz = todouble(telemetry.frequency_hz),\n        thd_voltage_percent = todouble(telemetry.thd_voltage_percent),\n        thd_current_percent = todouble(telemetry.thd_current_percent),\n        energy_delivered_kwh = todouble(telemetry.energy_delivered_kwh),\n        energy_received_kwh = todouble(telemetry.energy_received_kwh),\n        energy_net_kwh = todouble(telemetry.energy_net_kwh),\n        cumulative_energy_kwh = todouble(telemetry.cumulative_energy_kwh),\n        signal_strength_dbm = todouble(telemetry.signal_strength_dbm),\n        battery_voltage = todouble(telemetry.battery_voltage),\n        internal_temperature_c = todouble(telemetry.internal_temperature_c),\n        tamper_detected = tobool(telemetry.tamper_detected),\n        power_outage = tobool(telemetry.power_outage),\n        communication_error = tobool(telemetry.communication_error),\n        meter_error = tobool(telemetry.meter_error),\n        sequence_number = todouble(telemetry.sequence_number),\n        data_quality = tostring(telemetry.data_quality),\n        firmware_version = tostring(telemetry.firmware_version)\n}\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "0bd0f494-672b-4507-9d4e-0aeeb17511e1",
+        "content": "\n\n.create-or-alter function with (folder = \"Telemetry\", docstring = \"Parse raw AMI telemetry data corresponding to last gasp messages unrelated to outages\", skipvalidation = \"true\") AMITelemetryParseLastGasp() {\n    AMITelemetryRaw\n    | where messageType == \"last_gasp\"\n    | project\n        meter_id = deviceId,\n        timestamp = todatetime(timestamp),\n        EventEnqueuedUtcTime,\n        EventProcessedUtcTime,\n        source, \n        signal_strength_dbm = todouble(telemetry.signal_strength_dbm),\n        battery_voltage = todouble(telemetry.battery_voltage),\n        internal_temperature_c = todouble(telemetry.internal_temperature_c),\n        firmware_version = tostring(telemetry.firmware_version),\n        alert_code = tostring(telemetry.alert_code),\n        alert_description = tostring(telemetry.alert_description),\n        failure_type = tostring(telemetry.failure_type),\n        final_energy_reading_kwh = todouble(telemetry.final_energy_reading_kwh),\n        error_codes = telemetry.error_codes,\n        retry_attempts = toint(telemetry.retry_attempts),\n        last_successful_transmission = todatetime(telemetry.last_successful_transmission),\n        priority = tostring(telemetry.priority),\n        requires_investigation = tobool(telemetry.requires_investigation)\n}\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "a9fe3328-c262-4909-b042-f39fea57996b",
+        "content": "\n\n.create-or-alter function with (folder = \"Telemetry\", docstring = \"Parse raw AMI telemetry data corresponding to outage-related last gasp messages\", skipvalidation = \"true\") AMITelemetryParseOutageLastGasp() {\n    AMITelemetryRaw\n    | where messageType == \"outage_last_gasp\"\n    | project\n        meter_id = deviceId,\n        timestamp = todatetime(timestamp),\n        EventEnqueuedUtcTime,\n        EventProcessedUtcTime,\n        source, \n        battery_voltage = todouble(telemetry.battery_voltage),\n        sequence_number = todouble(telemetry.sequence_number),\n        firmware_version = todouble(telemetry.firmware_version),\n        alert_code = tostring(telemetry.alert_code),\n        alert_description = tostring(telemetry.alert_description),\n        priority = tostring(telemetry.priority),\n        outage_id = todouble(telemetry.outage_id),\n        voltage_at_outage = todouble(telemetry.voltage_at_outage),\n        last_voltage_reading = todouble(telemetry.last_voltage_reading),\n        power_at_outage = todouble(telemetry.power_at_outage),\n        backup_power_available = tobool(telemetry.backup_power_available),\n        estimated_backup_hours = todouble(telemetry.estimated_backup_hours),\n        outage_type = tostring(telemetry.outage_type),\n        correlated_outage = tobool(telemetry.correlated_outage),\n        automatic_restoration_expected = tobool(telemetry.automatic_restoration_expected)\n}\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "7d62df5b-47af-40c3-9a9b-ebe5a4a0c2fa",
+        "content": "\n\n.create-or-alter function with (folder = \"Telemetry\", docstring = \"Parse raw AMI telemetry data corresponding to warning messages\", skipvalidation = \"true\") AMITelemetryParseWarnings() {\n    AMITelemetryRaw\n    | where messageType == \"battery_warning\"\n    | project\n        meter_id = deviceId,\n        timestamp = todatetime(timestamp),\n        EventEnqueuedUtcTime,\n        EventProcessedUtcTime,\n        source, \n        messageType = messageType,\n        signal_strength_dbm = todouble(telemetry.signal_strength_dbm),\n        battery_voltage = todouble(telemetry.battery_voltage),\n        internal_temperature_c = todouble(telemetry.internal_temperature_c),\n        sequence_number = todouble(telemetry.sequence_number),\n        firmware_version = tostring(telemetry.firmware_version),\n        alert_code = tostring(telemetry.alert_code),\n        alert_description = tostring(telemetry.alert_description),\n        priority = tostring(telemetry.priority),\n        estimated_remaining_hours = todouble(telemetry.estimated_remaining_hours),\n        requires_maintenance = tobool(telemetry.requires_maintenance)\n}\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "e6e34d75-1b44-47fc-af17-fdffec70d252",
+        "content": "AMITelemetryRaw\n| where not(isnull(EventEnqueuedUtcTime))\n| take 1000\n\n\n.set-or-append AMITelemetryIntervalReadings <| AMITelemetryParseIntervalReadings\n.set-or-append AMITelemetryLastGasp <| AMITelemetryParseLastGasp\n.set-or-append AMITelemetryOutageLastGasp <| AMITelemetryParseOutageLastGasp\n.set-or-append AMITelemetryWarnings <| AMITelemetryParseWarnings\n\n\n.alter table AMITelemetryIntervalReadings policy update\n```\n[\n    {\n        \"IsEnabled\": true,\n        \"Source\": \"AMITelemetryRaw\",\n        \"Query\": \"AMITelemetryParseIntervalReadings\",\n        \"IsTransactional\": true,\n        \"PropagateIngestionProperties\": false\n    }\n]\n```\n\n\n.alter table AMITelemetryLastGasp policy update\n```\n[\n    {\n        \"IsEnabled\": true,\n        \"Source\": \"AMITelemetryRaw\",\n        \"Query\": \"AMITelemetryParseLastGasp\",\n        \"IsTransactional\": true,\n        \"PropagateIngestionProperties\": false\n    }\n]\n```\n\n.alter table AMITelemetryWarnings policy update\n```\n[\n    {\n        \"IsEnabled\": true,\n        \"Source\": \"AMITelemetryRaw\",\n        \"Query\": \"AMITelemetryParseWarnings\",\n        \"IsTransactional\": true,\n        \"PropagateIngestionProperties\": false\n    }\n]\n```\n\n\n.alter table AMITelemetryOutageLastGasp policy update\n```\n[\n    {\n        \"IsEnabled\": true,\n        \"Source\": \"AMITelemetryRaw\",\n        \"Query\": \"AMITelemetryParseOutageLastGasp\",\n        \"IsTransactional\": true,\n        \"PropagateIngestionProperties\": false\n    }\n]\n```\n\n.alter table VehicleTelemetry policy update\n```\n[\n    {\n        \"IsEnabled\": true,\n        \"Source\": \"VehicleTelemetryRaw\",\n        \"Query\": \"VehicleTelemetryParse()\",\n        \"IsTransactional\": true,\n        \"PropagateIngestionProperties\": false\n    }\n]\n```\n\n\nVehicleTelemetry\n| take 100\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "f657635b-df60-4df4-abce-554792ad231a",
+        "content": "AMITelemetryIntervalReadings\n| count\n//1,944,324\n\n\nAMITelemetryRaw\n| count \n\n//1,947,293\n\n\nAMITelemetryLatestReading\n| take 100",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "1742ef8a-24b7-4f7b-ba6b-451e76d2abcb",
+        "content": ".create-or-alter function meter_latest_reading(_accuracy_class: int = 6) {\n     external_table('Meters')\n    | where status == 'active'\n    | extend h3cell = geo_point_to_h3cell(longitude, latitude, toint(_accuracy_class))\n    | join kind=leftouter AMITelemetryLatestReading on meter_id\n    | extend time_since_last_reading_minutes = datetime_diff('minute', now(), timestamp)\n    | extend h3cell_centroid = geo_h3cell_to_central_point(h3cell)\n    | extend\n        h3cell_longitude = todouble(h3cell_centroid.coordinates[0]),\n        h3cell_latitude = todouble(h3cell_centroid.coordinates[1])\n    | project-away h3cell_centroid, data_quality\n }\n\n meter_latest_reading(3)\n | take 1000",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "21095ad3-0ea0-434b-959d-37030d7e996c",
+        "content": "AMITelemetryOutageLastGasp\n| summarize count() by bin(timestamp, 1min)\n| order  by timestamp desc \n\n\nGetTransformersAffectedByLatestStorm(3)\n\nGetFeedersAffectedByLatestStorm(2)\n\n\nAMITelemetryOutageLastGasp\n| where timestamp >= ago(300min)\n| summarize by meter_id",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "6ef481df-133d-496a-9a81-d56448898621",
+        "content": ".create-or-alter function with (docstring = 'Combine all reference data for meters, transformers, feeders and substations into a single flattened table. This function can be used with a \".set-or-replace MeterContextualization <| MeterContextualizationFunction()\" statement to populate the MeterContextualization table when reference data changes.') MeterContextualizationFunction() {\n     let mtr = external_table('Meters')\n        | project-rename\n            mtr_meter_id = meter_id,\n            mtr_serial_number = serial_number,\n            mtr_manufacturer = manufacturer,\n            mtr_model = model,\n            mtr_meter_type = meter_type,\n            mtr_max_amps = max_amps,\n            mtr_voltage = voltage,\n            mtr_phases = phases,\n            mtr_install_date = install_date,\n            mtr_firmware_version = firmware_version,\n            mtr_communication_type = communication_type,\n            mtr_street_address = street_address,\n            mtr_city = city,\n            mtr_state = state,\n            mtr_zip_code = zip_code,\n            mtr_latitude = latitude,\n            mtr_longitude = longitude,\n            mtr_customer_id = customer_id,\n            mtr_customer_type = customer_type,\n            mtr_service_class = service_class,\n            mtr_accuracy_class = accuracy_class,\n            mtr_register_type = register_type,\n            mtr_pulse_output = pulse_output,\n            mtr_tamper_detection = tamper_detection,\n            mtr_power_quality_monitoring = power_quality_monitoring,\n            mtr_load_profile_interval = load_profile_interval,\n            mtr_status = status,\n            mtr_last_maintenance = last_maintenance,\n            mtr_transformer_id = transformer_id;\n     let trnsf = external_table('Transformers')\n        | project-rename \n            trnsf_transformer_id = transformer_id,\n            trnsf_feeder_id = feeder_id,\n            trnsf_transformer_type = transformer_type,\n            trnsf_primary_voltage = primary_voltage,\n            trnsf_secondary_voltage = secondary_voltage,\n            trnsf_kva_rating = kva_rating,\n            trnsf_phase_config = phase_config,\n            trnsf_install_date = install_date,\n            trnsf_manufacturer = manufacturer,\n            trnsf_latitude = latitude,\n            trnsf_longitude = longitude,\n            trnsf_load_tap_changer = load_tap_changer,\n            trnsf_temperature_monitoring = temperature_monitoring;\n     let fdr = external_table(\"Feeders\")\n        | project-rename \n            fdr_feeder_id = feeder_id,\n            fdr_feeder_name = feeder_name,\n            fdr_substation_id = substation_id,\n            fdr_voltage_level = voltage_level,\n            fdr_max_load_kw = max_load_kw,\n            fdr_length_miles = length_miles,\n            fdr_conductor_type = conductor_type,\n            fdr_protection_scheme = protection_scheme,\n            fdr_scada_monitored = scada_monitored;\n     let sub = external_table(\"Substations\")\n        | project-rename \n            sub_substation_id = substation_id,\n            sub_substation_name = substation_name,\n            sub_voltage_level = voltage_level,\n            sub_capacity_mva = capacity_mva,\n            sub_latitude = latitude,\n            sub_longitude = longitude,\n            sub_commissioned_date = commissioned_date;\n     mtr\n    | join kind = inner trnsf on $left.mtr_transformer_id == $right.trnsf_transformer_id\n    | project-away trnsf_transformer_id\n    | join kind = inner fdr on $left.trnsf_feeder_id == $right.fdr_feeder_id\n    | project-away fdr_feeder_id\n    | join kind = inner sub on $left.fdr_substation_id == $right.sub_substation_id\n    | project-away sub_substation_id\n    | extend mtr_h3cell_5 = geo_point_to_h3cell(mtr_longitude, mtr_latitude, 5), mtr_h3cell_6 = geo_point_to_h3cell(mtr_longitude, mtr_latitude, 6), mtr_h3cell_7 = geo_point_to_h3cell(mtr_longitude, mtr_latitude, 7)\n }\n\n\n\n.set-or-replace MeterContextualization <| MeterContextualizationFunction()",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "8bd7d83c-e166-43ac-96dc-f5c979fd7796",
+        "content": "let Weather = WeatherCurrent\n| where EventEnqueuedUtcTime >= ago(200m)\n| project WeatherLayerColor = color, WeatherPolygon = features;\nlet OutageMeters = AMITelemetryOutageLastGasp\n| where timestamp >= ago(100min)\n| summarize by meter_id;\nMeterContextualization\n| join kind = leftouter OutageMeters on $left.mtr_meter_id == $right.meter_id\n| summarize TotalMeters = count(), OutageMeters = countif(not(isempty(meter_id))) by mtr_h3cell_6\n| union Weather\n| extend id = new_guid(), longitude = todouble(geo_h3cell_to_central_point(mtr_h3cell_6).coordinates[0]), latitude = todouble(geo_h3cell_to_central_point(mtr_h3cell_6).coordinates[1])\n\n\nlet Weather = WeatherCurrent \n    | where EventEnqueuedUtcTime >= ago(200m)\n    | project WeatherLayerColor = color, Polygon = tostring(todynamic(features).geometry);\nlet OutageMeters = AMITelemetryOutageLastGasp\n    | where timestamp >= ago(100min)\n    | summarize by meter_id;\nMeterContextualization\n| join kind = leftouter OutageMeters on $left.mtr_meter_id == $right.meter_id\n| summarize TotalMeters = count(), OutageMeters = countif(not(isempty(meter_id))) by mtr_h3cell_6, Polygon = tostring(geo_h3cell_to_polygon(mtr_h3cell_6))\n| union Weather\n| extend id = new_guid()\n\n\n\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "0b755eb7-4e0a-4af6-b241-cfc0545c3ab4",
+        "content": "let Weather = WeatherCurrent \n    | where EventEnqueuedUtcTime >= ago(2m)\n    | project PolygonColor = color, Polygon = tostring(todynamic(features).geometry), rainfall_rate;\nlet OutageMeters = AMITelemetryOutageLastGasp\n    | where timestamp >= ago(3min)\n    | summarize by meter_id;\nMeterContextualization\n| join kind = leftouter OutageMeters on $left.mtr_meter_id == $right.meter_id\n| summarize Meters = count(), OutageMeters = countif(not(isempty(meter_id))) by mtr_h3cell_6\n| extend Polygon = tostring(geo_h3cell_to_polygon(mtr_h3cell_6)), PolygonColor = case(OutageMeters>5, \"#FF8066\",OutageMeters >0, \"#FFEECC\",\"#D5FFCC\")\n| union Weather\n| order by rainfall_rate asc\n| project-away mtr_h3cell_6, rainfall_rate\n| serialize\n| extend Id = row_number()\n\n\nAMITelemetryOutageLastGasp\n| where timestamp > ago(3min)",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "2222ca11-6f2b-4de9-b987-441aca80ad66",
+        "content": "AMITelemetryIntervalReadings\n| where timestamp >= ago(30min)\n| project-away EventEnqueuedUtcTime, EventProcessedUtcTime, source, interval_minutes, sequence_number, data_quality, firmware_version\n| summarize sum(energy_net_kwh) by bin(timestamp, 1min)\n| order  by timestamp\n\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "f4a663dd-61a4-410c-b6a2-a0eff05bb0f9",
+        "content": ".create table VehicleTelemetryRaw (EventID:string,\nJourneyID:string,\nVehicleID:string,\nDriverID:dynamic,\nEventCategoryID:long,\ntimestamp:string,\nodometer:dynamic,\ntire_pressure:dynamic,\nlat:dynamic,\nlon:dynamic,\nvehicle_speed:dynamic,\nengine_rpm:dynamic,\ntransmission_gear_position:long,\ngear_lever_position:long,\naccelerator_pedal_position:dynamic,\nbrake_pedal_position:dynamic,\ntorque_at_transmission:dynamic,\nengine_temp:dynamic,\ntransmission_temp:dynamic,\nsteering_wheel_angle:dynamic,\ndoor_status:string,\nignition_status:long,\nheadlamp_status:long,\nhigh_beam_status:long,\nwindshield_wiper_status:long,\nfuel_level:dynamic,\nparking_brake_status:string,\nEventProcessedUtcTime:datetime,\nPartitionId:long,\nEventEnqueuedUtcTime:datetime\n)",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "eeea63b8-f661-4425-ab6b-157114a670fb",
+        "content": "// Use 'take' to view a sample number of records in the table and check the data.\nVehicleTelemetryRaw\n| take 100\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "13186086-9d82-4050-82af-96828348b783",
+        "content": ".create function VehicleTelemetryParse() {\nVehicleTelemetryRaw\n| extend timestamp = todatetime(timestamp)\n}\n\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "f44a6f9a-1790-4994-acb2-7fcaf0aa737e",
+        "content": "let Transfomers = MeterContextualization\n    | summarize take_any(trnsf_latitude, trnsf_longitude) by mtr_transformer_id //Get a list of transfomers and their coordinates\n    | project\n        lat = trnsf_latitude,\n        lon = trnsf_longitude,\n        transfomer_id = mtr_transformer_id,\n        JoinKey = 1;\nlet VehicleCurrentLocation = VehicleTelemetry\n    | summarize arg_max(timestamp, todouble(lat), todouble(lon)) by VehicleID, JoinKey = 1;\nTransfomers\n| join kind= inner VehicleCurrentLocation on JoinKey\n| extend VehicleDistance = geo_distance_2points(lon, lat, lon1, lat1)\n| summarize arg_min(VehicleDistance, VehicleID) by transfomer_id\n| extend VehicleDistance_Miles = VehicleDistance/1609.344\n\n",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "cc80accf-af1c-47fa-a175-7c4d2bf58562",
+        "content": "let z = datatable (seconds: int, value: string) [\n    1, '1sec',\n    2, '2sec',\n    5, '5sec',\n    10, '10sec',\n    15, '15sec',\n    30, '30sec',\n    60, '1min',\n    120, '2min',\n    300, '5min',\n    600, '10min',\n    900, '15min',\n    1800, '30min',\n    3600, '1hour',\n    7200, '2hour',\n    10800, '3hour',\n    21600, '6hour',\n    43200, '12hour',\n    86400, '1day'\n];\nlet _start = todatetime('2025-01-01');\nlet _end = now();\nlet _timespan = datetime_diff('second', _end, _start);\nz\n| extend duration = _timespan, intervals = _timespan/seconds\n| where intervals <= 2000\n\n\n\n\nlet a = totimespan(toscalar(\n    z| order by seconds desc | take 1|project value));\nVehicleTelemetry\n| take 1000\n| summarize count() by bin(timestamp, a)",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "c9f49844-4fea-4e8d-8b8f-b5e59d7b314d",
+        "content": ".create-or-alter function with (docstring = \"Calculate a suitable timespan for breaking up a time period\", skipvalidation = \"true\") get_bin_timespan(relative_time:string, start:string, end:string, bin_timespan:string, max_bins:int=2000, anchor_date: datetime = datetime(null)) {\n    let _start = iff(relative_time == '*custom*', todatetime(start), iff(isempty(anchor_date), now(), anchor_date) - totimespan(relative_time));\n     let _end = iff(relative_time == '*custom*', todatetime(end), iff(isempty(anchor_date), now(), anchor_date));\n     let _bin_timespan = bin_timespan;\n     let _max_bins = max_bins;\n     let _bins = (_end - _start) / totimespan(_bin_timespan);\n     let _duration = abs(datetime_diff('second', _end, _start));\n     let _standard_timespans = datatable (seconds_per_bin: int, bin_timespan_label: string) [\n    1, '1sec',\n    2, '2sec',\n    5, '5sec',\n    10, '10sec',\n    15, '15sec',\n    30, '30sec',\n    60, '1min',\n    120, '2min',\n    300, '5min',\n    600, '10min',\n    900, '15min',\n    1800, '30min',\n    3600, '1hour',\n    7200, '2hour',\n    10800, '3hour',\n    21600, '6hour',\n    43200, '12hour',\n    86400, '1day',\n    604800, '7days'\n];\n     let _standard_timespan = toscalar(\n        _standard_timespans\n        | extend duration = _duration, bins = _duration / seconds_per_bin \n        | where bins <= _max_bins\n        | project bin_timespan = bin_timespan_label\n        | sort by _duration desc \n        | take 1\n        );\n     let result = datatable (id: int) [1];\n     result\n    | project bin_timespan = case(_bins <= _max_bins, _bin_timespan, isnotempty(_standard_timespan), _standard_timespan, strcat(tostring(toint(_duration / (_max_bins - 1))), 'sec'))\n}\n\n\n\nSandboxTags\n| evaluate narrow()",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "AMI Meter Statuses",
+    "description": "AMI Meter Statuses"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2b302e79-1f9c-9a7e-40e8-b342ef0b7b53"
+  }
+}

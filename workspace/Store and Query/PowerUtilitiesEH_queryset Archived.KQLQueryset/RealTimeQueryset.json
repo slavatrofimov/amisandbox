@@ -1,0 +1,34 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "4c13f88a-697a-4bc0-9686-f243495bcb4c",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "ec8c92df-991b-ab60-43c1-2ce77bfa6060",
+        "databaseItemName": "PowerUtilitiesEH"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "55774b77-b9f2-463e-af1e-73d635ee7594",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\n// KQL reference guide - https://aka.ms/KQLguide\n// SQL - KQL conversions - https://aka.ms/sqlcheatsheet\n//***********************************************************************************************************\n\n// Use \"take\" to view a sample number of records in the table and check the data.\nYOUR_TABLE_HERE\n| take 100\n\n// See how many records are in the table.\nYOUR_TABLE_HERE\n| count\n\n// This query returns the number of ingestions per hour in the given table.\nYOUR_TABLE_HERE\n| summarize IngestionCount = count() by bin(ingestion_time(), 1h)\n\n",
+        "title": "Tab",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "6ab7c511-79c9-41bd-b124-312c097f4515",
+        "content": ".drop materialized-view WeatherCurrent\n\n.create materialized-view with (backfill=true) WeatherCurrent on table WeatherRaw\n{\nWeatherRaw\n| mv-expand features\n| extend color = tostring(features.properties.color),\n    rainfall_rate = todecimal(features.properties.rainfall_rate_mm_per_hour)\n| project EventEnqueuedUtcTime, features = tostring(features), color, rainfall_rate\n| summarize arg_max(EventEnqueuedUtcTime, *) by color\n}\n\nWeatherCurrent\n| where EventEnqueuedUtcTime >= ago(5m)\n| order  by color\n\nWeatherRaw\n| mv-expand features\n| extend color = tostring(features.properties.color),\n    rainfall_rate = todecimal(features.properties.rainfall_rate_mm_per_hour)\n| project EventEnqueuedUtcTime, features = tostring(features), color, rainfall_rate\n| summarize arg_max(EventEnqueuedUtcTime, *) by color\n\n\nWeatherRaw\n| take 10",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      },
+      {
+        "id": "0e22b941-49bf-4af3-b56a-264a9b74b372",
+        "content": "external_table('meters')",
+        "title": "",
+        "dataSourceId": "4c13f88a-697a-4bc0-9686-f243495bcb4c"
+      }
+    ]
+  }
+}

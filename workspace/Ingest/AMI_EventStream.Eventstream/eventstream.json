@@ -1,0 +1,58 @@
+{
+  "sources": [
+    {
+      "id": "c912bbb6-118d-4afd-83a5-aa6ab20e1c56",
+      "name": "AMISource",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "e60da745-607e-4d78-a2b1-692993cf688a",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "ec8c92df-991b-ab60-43c1-2ce77bfa6060",
+        "databaseName": "PowerUtilitiesEH",
+        "tableName": "AMITelemetryRaw",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "AMI_EventStream-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "AMI_EventStream-stream",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "e1e95b8c-1bf9-4ba5-8804-7373462c0ff0",
+      "name": "AMI_EventStream-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "AMISource"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

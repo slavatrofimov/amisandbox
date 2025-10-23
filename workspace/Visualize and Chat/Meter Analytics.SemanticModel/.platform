@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Meter Analytics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2f9f38f3-5dd7-9d46-4640-e4721c9f2e0a"
+  }
+}

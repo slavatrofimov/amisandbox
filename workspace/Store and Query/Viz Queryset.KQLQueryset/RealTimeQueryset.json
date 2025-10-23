@@ -1,0 +1,34 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "7b49c5f6-994f-4483-835b-0c97f94bf6be",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "ec8c92df-991b-ab60-43c1-2ce77bfa6060",
+        "databaseItemName": "PowerUtilitiesEH"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "45f9d1f1-97be-4fa4-9cee-aef27baa4169",
+        "content": "let _start = todatetime('2025-07-01');\nlet _end = todatetime('2025-07-31');\nlet myrange = range(_start, _end, 1hour);\nlet x = datatable (id: int)[1];\nx\n| extend myrange = myrange\n| mv-expand myrange\n\n\nlet _start = todatetime('2025-07-01');\nlet _end = todatetime('2025-07-31');\nlet myrange = range(_start, _end, 1hour);\nlet x = datatable (id: int)[1];\nx\n| extend myrange = myrange\n| mv-expand myrange",
+        "title": "",
+        "dataSourceId": "7b49c5f6-994f-4483-835b-0c97f94bf6be"
+      },
+      {
+        "id": "1681ab6a-05d8-40b2-ae06-fbfed96d2487",
+        "content": ".create-or-alter function with (docstring = 'Calculate a suitable timespan for breaking up a time period') get_bin_timespan (relative_time: string, start: string, end: string, bin_timespan: string, max_bins: int = 2000) {\n     let _start = iff(relative_time == '*custom*', todatetime(start), now() - totimespan(relative_time));\n     let _end = iff(relative_time == '*custom*', todatetime(end), now());\n     let _bin_timespan = bin_timespan;\n     let _max_bins = max_bins;\n     let _bins = (_end - _start) / totimespan(_bin_timespan);\n     let _duration = abs(datetime_diff('second', _end, _start));\n     let _standard_timespans = datatable (seconds_per_bin: int, bin_timespan_label: string) [\n    1, '1sec',\n    2, '2sec',\n    5, '5sec',\n    10, '10sec',\n    15, '15sec',\n    30, '30sec',\n    60, '1min',\n    120, '2min',\n    300, '5min',\n    600, '10min',\n    900, '15min',\n    1800, '30min',\n    3600, '1hour',\n    7200, '2hour',\n    10800, '3hour',\n    21600, '6hour',\n    43200, '12hour',\n    86400, '1day',\n    604800, '7days'\n];\n     let _standard_timespan = toscalar(\n        _standard_timespans\n        | extend duration = _duration, bins = _duration / seconds_per_bin \n        | where bins <= _max_bins\n        | project bin_timespan = bin_timespan_label\n        | take 1\n        );\n     let result = datatable (id: int) [1];\n     result\n    | project bin_timespan = case(_bins <= _max_bins, _bin_timespan, isnotempty(_standard_timespan), _standard_timespan, strcat(tostring(toint(_duration / (_max_bins - 1))), 'sec'))\n }\n\nget_bin_timespan('*custom*', '2025-01-01', '2025-01-21', '1sec', 2000);\n\nlet bin_timespan_label = toscalar(get_bin_timespan('2025-01-01', '2025-01-21', '1sec', 2000));\nlet bin_timespan = totimespan(bin_timespan_label);\nVehicleTelemetry\n| where timestamp  between (_start .. _end)\n| summarize Metric = count() by bin(timestamp, bin_timespan)\n\nVehicleTelemetry\n| summarize by VehicleID\n| extend FleetId = iif(VehicleID contains \"20\", \"Fleet A\", \"Fleet B\")\n\n\nlet _start = todatetime('2005-01-01');\nlet _end = todatetime('2005-02-01');\nlet x = round(_start, 1sec)\n\nlet result = datatable (id: int) [1];\nresult\n| project replace_string(strcat(tostring(_start), ' - ', tostring(_end)), '.0000000Z', '')\n\n",
+        "title": "",
+        "dataSourceId": "7b49c5f6-994f-4483-835b-0c97f94bf6be"
+      },
+      {
+        "id": "377a169b-0f96-4e05-b9e3-72c3c0ecbeec",
+        "content": "let interval = 1hour;\nlet start = ago(7days);\nlet end = now();\nlet time_series = VehicleTelemetry\n    | where VehicleID in ('Truck46202', 'Truck46203', 'Truck46204', 'Truck46201')\n    | project-rename tag = VehicleID\n    | extend join_key = \"1\"\n    | make-series metric = avg(todouble(engine_rpm)) default = double(null) on timestamp from start to end step interval by tag, join_key;\ntime_series\n| join kind=inner time_series on join_key\n| where tag != tag1 and strcmp(tag, tag1) < 0\n| extend correlation_coefficient = series_pearson_correlation(metric, metric1)\n| project tag, tag1, correlation_coefficient\n\n\nlet interval = 1hour;\nlet start = ago(7days);\nlet end = now();\nlet time_series = VehicleTelemetry\n    | where VehicleID in ('Truck46202', 'Truck46203', 'Truck46204', 'Truck46201')\n    | project-rename tag = VehicleID\n    | make-series metric = avg(todouble(engine_rpm)) default = double(null) on timestamp from start to end step interval by tag;\ntime_series\n| project series_stats(metric)\n\n\n\n\n\n\n//| extend anomalies1 = series_decompose_anomalies(metric1, 1.5, -1, 'linefit')\n//| extend anomalies2 = series_decompose_anomalies(metric2, 1.5, -1, 'linefit')\n//| mv-expand timestamp, metric1, anomalies1, metric2, anomalies2\n//| project VehicleID, todatetime(timestamp), todouble(metric1), todouble(anomalies1), todouble(metric2), todouble(anomalies2)\n//| project VehicleID, timestamp, metric1, metric2, anomalies1 = iif(anomalies1 != 0, metric1, double(null)), anomalies2 = iif(anomalies2 != 0, metric2, double(null))\n\n//| mv-expand anomalies\n//| render anomalychart with(anomalycolumns=anomalies, title='Web app. traffic of a month, anomalies') //use \"| render anomalychart with anomalycolumns=anomalies\" to render the anomalies as bold points on the series charts.",
+        "title": "",
+        "dataSourceId": "7b49c5f6-994f-4483-835b-0c97f94bf6be"
+      }
+    ]
+  }
+}

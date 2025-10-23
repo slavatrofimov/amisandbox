@@ -1,0 +1,201 @@
+{
+  "config": "{\"version\":\"5.66\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY18SU07\",\"type\":2,\"version\":{\"visual\":\"1.8.23\",\"report\":\"2.0.23\",\"page\":\"1.3.23\"}},\"customTheme\":{\"name\":\"CityPark\",\"type\":2,\"version\":{\"visual\":\"2.1.0\",\"report\":\"2.1.0\",\"page\":\"2.0.0\"}}},\"activeSectionIndex\":2,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [
+    "iconMapProE938B1CED4834168A55864E1F8E7242E"
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY18SU07",
+            "path": "BaseThemes/CY18SU07.json",
+            "type": 202
+          },
+          {
+            "name": "CityPark",
+            "path": "BuiltInThemes/CityPark.json",
+            "type": 201
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"pageRefresh\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"duration\":{\"expr\":{\"Literal\":{\"Value\":\"'PT1M'\"}}}}}]}}",
+      "displayName": "Meter Summary",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"947acfcbb52803e2c8bd\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Meter Contextualization\"}},\"Property\":\"fdr_feeder_name\"}},\"type\":\"Categorical\",\"howCreated\":1},{\"name\":\"5238ec3554cc8d785217\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Meter Contextualization\"}},\"Property\":\"mtr_city\"}},\"type\":\"Categorical\",\"howCreated\":1}]",
+      "height": 720.00,
+      "name": "69c33982b454d5d9690c",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"14b3dcf819702360a994\",\"layouts\":[{\"id\":0,\"position\":{\"x\":8.062992125984252,\"y\":57.44881889763779,\"z\":7000,\"width\":1262.8661417322835,\"height\":13.10236220472441,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'line'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 13.10,
+          "width": 1262.87,
+          "x": 8.06,
+          "y": 57.45,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"3c9ed1ab100e08c6bd7d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":308.9655172413793,\"y\":243.9201451905626,\"z\":6000,\"width\":269.4736842105263,\"height\":78.98366606170599,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Parameter.Parameter\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Metric\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Metric\"},\"Name\":\"Parameter.Parameter\",\"NativeReferenceName\":\"Metric\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Metric\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Parameter Fields\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'''Meter Readings Binned''[THD Voltage Percent]'\"}}],[{\"Literal\":{\"Value\":\"'''Meter Readings Binned''[THD Current Percent]'\"}}]]}}}]}}}}],\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}]},\"cachedFilterDisplayItems\":[{\"id\":{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Metric\"}},\"Property\":\"Parameter Fields\"}},\"Right\":{\"Literal\":{\"Value\":\"'''Meter Readings Binned''[THD Voltage Percent]'\"}}}}},\"displayName\":\"THD Voltage Percent\"},{\"id\":{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Metric\"}},\"Property\":\"Parameter Fields\"}},\"Right\":{\"Literal\":{\"Value\":\"'''Meter Readings Binned''[THD Current Percent]'\"}}}}},\"displayName\":\"THD Current Percent\"}]}}",
+          "filters": "[]",
+          "height": 78.98,
+          "width": 269.47,
+          "x": 308.97,
+          "y": 243.92,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"3e6f97907e0057cd1d53\",\"layouts\":[{\"id\":0,\"position\":{\"x\":847.3105497771174,\"y\":244.39821693907876,\"z\":5000,\"width\":432.6894502228826,\"height\":475.48291233283805,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"iconMapProE938B1CED4834168A55864E1F8E7242E\",\"projections\":{\"H3Weight\":[{\"queryRef\":\"Sum(Meter Readings 30 min.energy_net_kwh)\"}],\"category\":[{\"queryRef\":\"Meter Contextualization.mtr_h3cell_7\",\"active\":true}],\"tooltip\":[{\"queryRef\":\"Min(Meter Contextualization.mtr_meter_id)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m1\",\"Entity\":\"Meter Readings Binned\",\"Type\":0},{\"Name\":\"m\",\"Entity\":\"Meter Contextualization\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m1\"}},\"Property\":\"energy_net_kwh\"}},\"Function\":0},\"Name\":\"Sum(Meter Readings 30 min.energy_net_kwh)\",\"NativeReferenceName\":\"Sum of energy_net_kwh\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"mtr_h3cell_7\"},\"Name\":\"Meter Contextualization.mtr_h3cell_7\",\"NativeReferenceName\":\"mtr_h3cell_7\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"mtr_meter_id\"}},\"Function\":5},\"Name\":\"Min(Meter Contextualization.mtr_meter_id)\",\"NativeReferenceName\":\"Number of Meters\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m1\"}},\"Property\":\"energy_net_kwh\"}},\"Function\":0}}}]},\"columnProperties\":{\"Min(Meter Contextualization.mtr_meter_id)\":{\"displayName\":\"Number of Meters\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"circlesConfiguration\":[{\"properties\":{\"includeCircleLayer\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"h3Configuration\":[{\"properties\":{\"includeH3Layer\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"h3Source\":{\"expr\":{\"Literal\":{\"Value\":\"'indexes'\"}}},\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"30D\"}}},\"usePowerBIFormatting\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"outlineWidth\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"startColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}},\"endColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0}}}}},\"midColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0}}}}},\"outlineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.4}}}}}}}],\"background\":[{\"properties\":{\"iconMapStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'{\\\"url\\\":\\\"https://styles.iconmappro.com/styles/datavizgrey.json\\\", \\\"attribution\\\":\\\"&copy; <a href=''https://www.tekantis.com''>Tekantis</a> | <a href=''https://github.com/protomaps/basemaps''>Protomaps</a> | &copy; <a href=''http://www.openstreetmap.org/copyright''>OpenStreetMap</a>\\\", \\\"multilanguage\\\":\\\"true\\\", \\\"buildingheight\\\":\\\"true\\\", \\\"thumbnail\\\":\\\"\\\", \\\"landuse\\\":\\\"true\\\", \\\"pois\\\":\\\"true\\\"}'\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Energy Delivered by Meter'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 475.48,
+          "width": 432.69,
+          "x": 847.31,
+          "y": 244.40,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"77118a5a8008b9309ab6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":795.2125984251968,\"y\":0,\"z\":3000,\"width\":484.78740157480314,\"height\":53.41732283464567,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Meter Contextualization.mtr_service_class\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Meter Contextualization\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"mtr_service_class\"},\"Name\":\"Meter Contextualization.mtr_service_class\",\"NativeReferenceName\":\"Service Class\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"mtr_service_class\"}}}]},\"columnProperties\":{\"Meter Contextualization.mtr_service_class\":{\"displayName\":\"Service Class\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{}}],\"items\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 53.42,
+          "width": 484.79,
+          "x": 795.21,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"87181210bde038d9d2bc\",\"layouts\":[{\"id\":0,\"position\":{\"x\":308.9655172413793,\"y\":322.9038112522686,\"z\":1000,\"width\":537.7858439201452,\"height\":397.2413793103448,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Meter Readings Binned.THD Voltage Percent\"},{\"queryRef\":\"Meter Readings Binned.THD Current Percent\"}],\"Category\":[{\"queryRef\":\"Meter Readings 30 min.timestamp\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Meter Readings Binned\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"timestamp\"},\"Name\":\"Meter Readings 30 min.timestamp\",\"NativeReferenceName\":\"timestamp\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"THD Voltage Percent\"},\"Name\":\"Meter Readings Binned.THD Voltage Percent\",\"NativeReferenceName\":\"THD Voltage Percent\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"THD Current Percent\"},\"Name\":\"Meter Readings Binned.THD Current Percent\",\"NativeReferenceName\":\"THD Current Percent\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"timestamp\"}}}]},\"queryFieldParametersByRole\":{\"Y\":[{\"index\":0,\"length\":2,\"expr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Metric\"}},\"Property\":\"Metric\"}}}]},\"columnProperties\":{\"Meter Readings Binned.THD Voltage Percent\":{\"displayName\":\"THD Voltage Percent\"},\"Meter Readings Binned.THD Current Percent\":{\"displayName\":\"THD Current Percent\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"start\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 397.24,
+          "width": 537.79,
+          "x": 308.97,
+          "y": 322.90,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"8a3079b171714900e25b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":489.8267716535433,\"y\":0,\"z\":8000,\"width\":300.34645669291336,\"height\":64.50393700787401,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Duration.Duration\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Duration\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Duration\"},\"Name\":\"Duration.Duration\",\"NativeReferenceName\":\"Duration\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Duration\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Duration\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'30min'\"}}]]}}}]}}}}],\"items\":[{\"properties\":{\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 64.50,
+          "width": 300.35,
+          "x": 489.83,
+          "y": 0.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"9967b00b536cea84329a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":4000,\"width\":489.8267716535433,\"height\":66.51968503937007,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Meter Summary\",\"textStyle\":{\"fontSize\":\"28pt\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 66.52,
+          "width": 489.83,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"c1b9a9a7527b447e6022\",\"layouts\":[{\"id\":0,\"position\":{\"x\":309.27513639906465,\"y\":66.84333593141075,\"z\":2000,\"width\":970.7248636009352,\"height\":176.58612626656273,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"Min(Meter Contextualization.mtr_meter_id)\"},{\"queryRef\":\"Sum(Meter Readings 30 min.energy_net_kwh)\"},{\"queryRef\":\"Sum(Meter Readings 30 min.frequency_hz)\"},{\"queryRef\":\"Sum(Meter Readings 30 min.frequency_hz)1\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Meter Readings Binned\",\"Type\":0},{\"Name\":\"m1\",\"Entity\":\"Meter Contextualization\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"energy_net_kwh\"}},\"Function\":0},\"Name\":\"Sum(Meter Readings 30 min.energy_net_kwh)\",\"NativeReferenceName\":\"Net Energy kwh\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"frequency_hz\"}},\"Function\":3},\"Name\":\"Sum(Meter Readings 30 min.frequency_hz)\",\"NativeReferenceName\":\"Min Frequency Hz\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"frequency_hz\"}},\"Function\":4},\"Name\":\"Sum(Meter Readings 30 min.frequency_hz)1\",\"NativeReferenceName\":\"Max Frequency Hz\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m1\"}},\"Property\":\"mtr_meter_id\"}},\"Function\":5},\"Name\":\"Min(Meter Contextualization.mtr_meter_id)\",\"NativeReferenceName\":\"Meters\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m1\"}},\"Property\":\"mtr_meter_id\"}},\"Function\":5}}}]},\"columnProperties\":{\"Min(Meter Contextualization.mtr_meter_id)\":{\"displayName\":\"Meters\"},\"Sum(Meter Readings 30 min.energy_net_kwh)\":{\"displayName\":\"Net Energy kwh\"},\"Sum(Meter Readings 30 min.frequency_hz)\":{\"displayName\":\"Min Frequency Hz\"},\"Sum(Meter Readings 30 min.frequency_hz)1\":{\"displayName\":\"Max Frequency Hz\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"layout\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"columnCount\":{\"expr\":{\"Literal\":{\"Value\":\"4L\"}}}}},{\"properties\":{\"backgroundShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"backgroundFillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0.6}}}}},\"rectangleRoundedCurve\":{\"expr\":{\"Literal\":{\"Value\":\"10L\"}}},\"rectangleRoundedCurveCustomStyle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 176.59,
+          "width": 970.72,
+          "x": 309.28,
+          "y": 66.84,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"e8def3e3a344d0b0b81a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":66.60359508041627,\"z\":0,\"width\":299.1106906338694,\"height\":653.926206244087,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Meter Contextualization.fdr_substation_id\",\"active\":true},{\"queryRef\":\"Meter Contextualization.trnsf_feeder_id\"},{\"queryRef\":\"Meter Contextualization.mtr_transformer_id\"},{\"queryRef\":\"Meter Contextualization.mtr_meter_id\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Meter Contextualization\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"fdr_substation_id\"},\"Name\":\"Meter Contextualization.fdr_substation_id\",\"NativeReferenceName\":\"substation_id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"trnsf_feeder_id\"},\"Name\":\"Meter Contextualization.trnsf_feeder_id\",\"NativeReferenceName\":\"feeder_id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"mtr_transformer_id\"},\"Name\":\"Meter Contextualization.mtr_transformer_id\",\"NativeReferenceName\":\"transformer_id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"mtr_meter_id\"},\"Name\":\"Meter Contextualization.mtr_meter_id\",\"NativeReferenceName\":\"mtr_meter_id\"}]},\"expansionStates\":[{\"roles\":[\"Values\"],\"levels\":[{\"queryRefs\":[\"Meter Contextualization.fdr_substation_id\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Meter Contextualization\"}},\"Property\":\"fdr_substation_id\"}}],\"isPinned\":true},{\"queryRefs\":[\"Meter Contextualization.trnsf_feeder_id\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Meter Contextualization\"}},\"Property\":\"trnsf_feeder_id\"}}],\"isPinned\":true},{\"queryRefs\":[\"Meter Contextualization.mtr_transformer_id\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Meter Contextualization\"}},\"Property\":\"mtr_transformer_id\"}}],\"isPinned\":true},{\"queryRefs\":[\"Meter Contextualization.mtr_meter_id\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'SUB_008'\"}}],\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'FDR_038'\"}}],\"isToggled\":true}]},{\"identityValues\":[{\"Literal\":{\"Value\":\"'SUB_005'\"}}],\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'FDR_024'\"}}],\"isToggled\":true,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'XFMR_0129'\"}}],\"isToggled\":true}]}]},{\"identityValues\":[{\"Literal\":{\"Value\":\"'SUB_010'\"}}],\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'FDR_053'\"}}],\"isToggled\":true}]},{\"identityValues\":[{\"Literal\":{\"Value\":\"'SUB_001'\"}}],\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'FDR_001'\"}}],\"isToggled\":true,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'XFMR_0002'\"}}],\"isToggled\":true}]}]}]}}],\"columnProperties\":{\"Meter Contextualization.fdr_substation_id\":{\"displayName\":\"substation_id\"},\"Meter Contextualization.trnsf_feeder_id\":{\"displayName\":\"feeder_id\"},\"Meter Contextualization.mtr_transformer_id\":{\"displayName\":\"transformer_id\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Meter Hierarchy'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 653.93,
+          "width": 299.11,
+          "x": 0.00,
+          "y": 66.60,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"pageRefresh\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"duration\":{\"expr\":{\"Literal\":{\"Value\":\"'PT2S'\"}}}}}]}}",
+      "displayName": "Meter Status + Weather",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "e6496c9baf27ff14447d",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1d361e3dcd76423b077d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":1280,\"height\":66.28183361629881,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Meter Outage Status and Weather\",\"textStyle\":{\"fontSize\":\"28pt\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 66.28,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"3dbd4518cb989efb6464\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":67.36842105263158,\"z\":0,\"width\":1280,\"height\":653.0390492359933,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"iconMapProE938B1CED4834168A55864E1F8E7242E\",\"projections\":{\"imageWKT\":[{\"queryRef\":\"Min(WeatherCurrent.Polygon)\"}],\"category\":[{\"queryRef\":\"Polygons.Id\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"Polygons\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"Polygon\"}},\"Function\":3},\"Name\":\"Min(WeatherCurrent.Polygon)\",\"NativeReferenceName\":\"First Polygon\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"Id\"},\"Name\":\"Polygons.Id\",\"NativeReferenceName\":\"Id\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"Id\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"circlesConfiguration\":[{\"properties\":{\"includeCircleLayer\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"wktConfiguration\":[{\"properties\":{\"includeWktLayer\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"includeInZoom\":{\"expr\":{\"Literal\":{\"Value\":\"'yes'\"}}},\"allowSelection\":{\"expr\":{\"Literal\":{\"Value\":\"'no'\"}}}}}],\"wktFormatting\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Polygons\"}},\"Property\":\"PolygonColor\"}},\"Function\":3}}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":0}}]}},{\"properties\":{\"outlineWidth\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"outlineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.6}}}}},\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"39D\"}}},\"fillStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'solid'\"}}},\"hatchWidth\":{\"expr\":{\"Literal\":{\"Value\":\"7D\"}}},\"outlineTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"62D\"}}},\"lineBlur\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}}}}],\"background\":[{\"properties\":{\"iconMapStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'{\\\"url\\\":\\\"https://iconmappropublictiles.blob.core.windows.net/styles/datavizgrey.json\\\", \\\"attribution\\\":\\\"&copy; <a href=''https://www.tekantis.com''>Tekantis</a> | <a href=''https://github.com/protomaps/basemaps''>Protomaps</a> | &copy; <a href=''http://www.openstreetmap.org/copyright''>OpenStreetMap</a>\\\", \\\"multilanguage\\\":\\\"true\\\", \\\"buildingheight\\\":\\\"true\\\", \\\"thumbnail\\\":\\\"\\\", \\\"landuse\\\":\\\"true\\\", \\\"pois\\\":\\\"true\\\"}'\"}}}}}],\"h3Configuration\":[{\"properties\":{\"includeH3Layer\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"h3Source\":{\"expr\":{\"Literal\":{\"Value\":\"'coordinates'\"}}},\"outlineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.1}}}}},\"resolution\":{\"expr\":{\"Literal\":{\"Value\":\"6D\"}}},\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"53D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 653.04,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 67.37,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"pageRefresh\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"duration\":{\"expr\":{\"Literal\":{\"Value\":\"'PT10S'\"}}}}}]}}",
+      "displayName": "Crew Tracking",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "e703832b1e58700aa053",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1305f2c3ae75dd0ae919\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.569777043765484,\"y\":65.532617671346,\"z\":0,\"width\":960.7927332782824,\"height\":654.2691990090834,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"iconMapProE938B1CED4834168A55864E1F8E7242E\",\"projections\":{\"category\":[{\"queryRef\":\"VehicleTelemetryRaw.VehicleID\",\"active\":true}],\"Size\":[{\"queryRef\":\"CountNonNull(VehicleTelemetryRaw.VehicleID)\"}],\"imageWKT\":[{\"queryRef\":\"Min(VehicleTelemetryRaw.Route)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"v\",\"Entity\":\"VehicleTelemetry\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"v\"}},\"Property\":\"VehicleID\"},\"Name\":\"VehicleTelemetryRaw.VehicleID\",\"NativeReferenceName\":\"VehicleID\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"v\"}},\"Property\":\"VehicleID\"}},\"Function\":5},\"Name\":\"CountNonNull(VehicleTelemetryRaw.VehicleID)\",\"NativeReferenceName\":\"Count of VehicleID\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"v\"}},\"Property\":\"Route\"}},\"Function\":3},\"Name\":\"Min(VehicleTelemetryRaw.Route)\",\"NativeReferenceName\":\"First Route\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"v\"}},\"Property\":\"VehicleID\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"linesConfiguration\":[{\"properties\":{\"includeLinesLayer\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"geoJsonConfiguration\":[{\"properties\":{\"includeGeoJsonLayerMulti\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"wktConfiguration\":[{\"properties\":{\"includeWktLayer\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"pointSize\":{\"expr\":{\"Literal\":{\"Value\":\"6D\"}}},\"bezier\":{\"expr\":{\"Literal\":{\"Value\":\"'straight'\"}}},\"imageAtDestination\":{\"expr\":{\"Literal\":{\"Value\":\"'https://raw.githubusercontent.com/slavatrofimov/miscellaneous/refs/heads/main/truck.svg'\"}}},\"startImage\":{\"expr\":{\"Literal\":{\"Value\":\"''\"}}},\"startImageWidth\":{\"expr\":{\"Literal\":{\"Value\":\"40D\"}}},\"startImageHeight\":{\"expr\":{\"Literal\":{\"Value\":\"40D\"}}},\"imageWidth\":{\"expr\":{\"Literal\":{\"Value\":\"50D\"}}},\"imageHeight\":{\"expr\":{\"Literal\":{\"Value\":\"50D\"}}}}}],\"circlesConfiguration\":[{\"properties\":{\"includeCircleLayer\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"overlays\":[{\"properties\":{\"geoJSONFile\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"weather\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"mapLabels\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"wms\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"traffic\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"mapSource\":{\"expr\":{\"Literal\":{\"Value\":\"'iconMap'\"}}}}}],\"map\":[{\"properties\":{\"glDataLayer\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"limitMap\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"wktFormatting\":[{\"properties\":{\"outlineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":5,\"Percent\":0}}}}},\"dashAnimationSpeed\":{\"expr\":{\"Literal\":{\"Value\":\"'10'\"}}},\"lineSymbolInclude\":{\"expr\":{\"Literal\":{\"Value\":\"'no'\"}}},\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.25}}}}},\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"38D\"}}},\"fillStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'solid'\"}}},\"dashArray\":{\"expr\":{\"Literal\":{\"Value\":\"'12 10'\"}}},\"lineBlur\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"outlineWidth\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}}}}],\"circlesFormatting\":[{\"properties\":{\"outlineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0}}}}}}}],\"controls\":[{\"properties\":{\"zoomLock\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"zoomDisplayControl\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 654.27,
+          "width": 960.79,
+          "x": 10.57,
+          "y": 65.53,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"94dfeaa1136261e2a670\",\"layouts\":[{\"id\":0,\"position\":{\"x\":8.062992125984252,\"y\":57.44881889763779,\"z\":3,\"width\":1262.8661417322835,\"height\":13.10236220472441,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'line'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 13.10,
+          "width": 1262.87,
+          "x": 8.06,
+          "y": 57.45,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"a81a1200857125458608\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":2,\"width\":1270.9291338582677,\"height\":66.51968503937007,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Crew Tracking\",\"textStyle\":{\"fontSize\":\"28pt\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 66.52,
+          "width": 1270.93,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"c61d37c822c077edc1b7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":982,\"y\":66,\"width\":298,\"height\":654,\"z\":1,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"VehicleTelemetry.VehicleID\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"v\",\"Entity\":\"VehicleTelemetry\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"v\"}},\"Property\":\"VehicleID\"},\"Name\":\"VehicleTelemetry.VehicleID\",\"NativeReferenceName\":\"VehicleID\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 654.00,
+          "width": 298.00,
+          "x": 982.00,
+          "y": 66.00,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "CityPark"
+}

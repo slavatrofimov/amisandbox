@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Vehicle Telemetry - Time Series Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "73486dfa-95ea-8ef0-4046-58c4d2021d78"
+  }
+}
