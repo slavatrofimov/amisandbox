@@ -310,7 +310,6 @@ VehicleTelemetryRaw
 .alter column VehicleTelemetryRaw.['EventID'] policy encoding type = 'Identifier'
 .alter column VehicleTelemetryRaw.['timestamp'] policy encoding type = 'Identifier'
 .alter column VehicleTelemetry.['EventID'] policy encoding type = 'Identifier'
-.alter table AMITelemetryIntervalReadings policy update "[{\"IsEnabled\":true,\"Source\":\"AMITelemetryRaw\",\"Query\":\"AMITelemetryParseIntervalReadings\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
 .alter table AMITelemetryLastGasp policy update "[{\"IsEnabled\":true,\"Source\":\"AMITelemetryRaw\",\"Query\":\"AMITelemetryParseLastGasp\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
 .alter table AMITelemetryOutageLastGasp policy update "[{\"IsEnabled\":true,\"Source\":\"AMITelemetryRaw\",\"Query\":\"AMITelemetryParseOutageLastGasp\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
 .alter table AMITelemetryWarnings policy update "[{\"IsEnabled\":true,\"Source\":\"AMITelemetryRaw\",\"Query\":\"AMITelemetryParseWarnings\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
