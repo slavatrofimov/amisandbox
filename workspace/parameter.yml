@@ -36,7 +36,7 @@ find_replace:
     item_type: "Notebook"
 
   # Replace Eventhouse query service URI references
-  - find_value: "https://([a-zA-Z0-9-]+)\\.z4\\.kusto\\.fabric\\.microsoft\\.com"
+  - find_value: "https://([a-zA-Z0-9-]+)\\.([a-zA-Z0-9-]+)\\.kusto\\.fabric\\.microsoft\\.com"
     replace_value:
       _ALL_: "$items.Eventhouse.PowerUtilitiesEH.$queryserviceuri"
     is_regex: "true"
