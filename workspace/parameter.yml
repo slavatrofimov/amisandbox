@@ -48,10 +48,3 @@ key_value_replace:
       _ALL_: "$workspace.$id"
     item_type: ["Lakehouse", "Eventhouse", "KQLDatabase"]
     file_path: "**/.platform"
-
-  # Update semantic model references in report definitions
-  - find_key: $.datasetReference.byPath.path
-    replace_value:
-      _ALL_: "../Meter Analytics.SemanticModel"
-    item_type: "Report"
-    file_path: "**/definition.pbir"
