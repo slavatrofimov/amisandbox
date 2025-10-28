@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "OrgApp",
+    "displayName": "Power Utility: Real-Time Intelligence App"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ee303409-5772-9e23-4ab4-c90a1115b2ee"
+  }
+}

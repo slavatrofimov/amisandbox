@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "Vehicle Tracking",
+    "description": "Vehicle Tracking"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "194a31cf-dbab-ac51-4795-aae1b3178e04"
+  }
+}
